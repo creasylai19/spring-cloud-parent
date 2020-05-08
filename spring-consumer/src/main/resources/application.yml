@@ -3,3 +3,7 @@ server:
 spring:
   application:
     name: spring-consumer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka8761:8761/eureka/,http://eureka8762:8762/eureka/
