@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.creasy.provider.dao.IArticleDao">
+    <select id="getArticle" resultType="com.creasy.pojo.Article" parameterType="com.creasy.pojo.Article">
+        select * from t_article where id = #{id}
+    </select>
+</mapper>
