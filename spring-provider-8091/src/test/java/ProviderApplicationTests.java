@@ -1,10 +1,10 @@
-import com.creasy.provider.ProviderApplication;
+import com.creasy.provider.ProviderApplication8091;
 import com.creasy.provider.service.IArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest(classes = ProviderApplication.class)
+@SpringBootTest(classes = ProviderApplication8091.class)
 class ProviderApplicationTests {
 
     @Autowired

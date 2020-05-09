@@ -31,4 +31,11 @@ public class ConsumerController {
         return article;
     }
 
+    @GetMapping("/getArticleRandom/{id}")
+    public Article getArticleRandom(@PathVariable Integer id){
+        String url = "http://spring-provider/article/getArticleById/" + id;
+        Article article = restTemplate.getForObject(url, Article.class);
+        return article;
+    }
+
 }

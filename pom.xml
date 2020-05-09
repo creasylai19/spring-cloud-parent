@@ -18,7 +18,8 @@
     <modules>
         <module>spring-consumer</module>
         <module>spring-common</module>
-        <module>spring-provider</module>
+        <module>spring-provider-8090</module>
+        <module>spring-provider-8091</module>
         <module>eureka-server-8761</module>
         <module>eureka-server-8762</module>
     </modules>
