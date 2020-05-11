@@ -1,6 +1,8 @@
 package com.creasy.consumer.controller;
 
 import com.creasy.pojo.Article;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -21,21 +23,34 @@ public class ConsumerController {
     @Autowired
     private DiscoveryClient discoveryClient;
 
+    @HystrixCommand(fallbackMethod = "getArticleByServiceNameFallback",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+            }
+    )
     @GetMapping("/getArticleFromConsumer/{id}")
     public Article getArticleFromConsumer(@PathVariable Integer id){
         List<ServiceInstance> instances = discoveryClient.getInstances("SPRING-PROVIDER");
         ServiceInstance serviceInstance = instances.get(0);
-        String url = "http://"+ serviceInstance.getHost() +":"+ serviceInstance.getPort() +"/article/getArticleById/" + id;
-        Article article = restTemplate.getForObject(url, Article.class);
+        String url = "http://"+ serviceInstance.getHost() +":"+ serviceInstance.getPort() +"/article/getArticleByIdWithSleep/" + id;
+        Article article = new RestTemplate().getForObject(url, Article.class);
         System.out.println("========================>" + url);
         return article;
     }
 
-    @GetMapping("/getArticleRandom/{id}")
-    public Article getArticleRandom(@PathVariable Integer id){
+    @GetMapping("/getArticleByServiceName/{id}")
+    @HystrixCommand(fallbackMethod = "getArticleByServiceNameFallback",
+            commandProperties = {
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+            }
+    )
+    public Article getArticleByServiceName(@PathVariable Integer id){
         String url = "http://spring-provider/article/getArticleById/" + id;
-        Article article = restTemplate.getForObject(url, Article.class);
-        return article;
+        return restTemplate.getForObject(url, Article.class);
+    }
+
+    public Article getArticleByServiceNameFallback(Integer id){
+        return new Article(-1, "fallback");
     }
 
 }

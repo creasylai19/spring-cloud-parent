@@ -1,12 +1,12 @@
 server:
-  port: 8100
+  port: 9001
 spring:
   application:
-    name: spring-consumer
+    name: hystrix-turbine
 eureka:
   client:
     service-url:
       defaultZone: http://eureka8761:8761/eureka/,http://eureka8762:8762/eureka/
-spring-provider:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+turbine:
+  appConfig: SPRING-CONSUMER
+  clusterNameExpression: "'default'"

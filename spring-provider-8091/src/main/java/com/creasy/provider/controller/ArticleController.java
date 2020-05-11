@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -23,6 +25,18 @@ public class ArticleController {
     public Article getArticleById( @PathVariable Integer id ){
         Article article = iArticleService.getArticle(id);
         article.setId(port);
+        return article;
+    }
+
+    @GetMapping("/getArticleByIdWithSleep/{id}")
+    public Article getArticleByIdWithSleep( @PathVariable Integer id ){
+        Article article = iArticleService.getArticle(id);
+        article.setId(port);
+        try {
+            TimeUnit.SECONDS.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return article;
     }
 
