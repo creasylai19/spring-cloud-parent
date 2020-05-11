@@ -25,6 +25,7 @@
         <module>eureka-server-8762</module>
         <module>hystrix-dashboard</module>
         <module>hystrix-turbine</module>
+        <module>spring-conusmer-openfeign-8087</module>
     </modules>
 
     <dependencies>
