@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@FeignClient(value = "SPRING-PROVIDER")
-@RequestMapping("/article")
+@FeignClient(value = "SPRING-PROVIDER", fallback = ProviderFeignClientFallback.class, path = "/article")
 public interface ProviderFeignClient {
 
     @GetMapping("/getArticleById/{id}")
@@ -17,3 +16,5 @@ public interface ProviderFeignClient {
     public Article getArticleByIdWithSleep( @PathVariable("id") Integer id );
 
 }
+
+

@@ -21,5 +21,9 @@ public class ConsumerController {
         return providerFeignClient.getArticleById(id);
     }
 
+    @GetMapping("/getArticleWithSleep/{id}")
+    public Article getArticleWithSleep(@PathVariable Integer id){
+        return providerFeignClient.getArticleByIdWithSleep(id);
+    }
 
 }
