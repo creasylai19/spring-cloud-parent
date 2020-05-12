@@ -26,6 +26,7 @@
         <module>hystrix-dashboard</module>
         <module>hystrix-turbine</module>
         <module>spring-conusmer-openfeign-8087</module>
+        <module>spring-config-9003</module>
         <!--<module>spring-gateway</module>-->
     </modules>
 

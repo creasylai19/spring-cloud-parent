@@ -7,6 +7,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka8761:8761/eureka/,http://eureka8762:8762/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
 turbine:
   appConfig: SPRING-CONSUMER
   clusterNameExpression: "'default'"

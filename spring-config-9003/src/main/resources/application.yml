@@ -1,8 +1,15 @@
 server:
-  port: 8086
+  port: 9003
 spring:
   application:
-    name: spring-consumer
+    name: spring-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/creasylai19/spring-cloud-config.git
+          username: creasylai19@gmail.com
+          password: test
 eureka:
   client:
     service-url:
@@ -10,10 +17,6 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-#spring-provider:
-#  ribbon:
-#负载均衡策略
-#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 management:
   endpoints:
     web:
