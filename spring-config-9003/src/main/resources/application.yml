@@ -7,9 +7,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/creasylai19/spring-cloud-config.git
-          username: creasylai19@gmail.com
-          password: test
+          uri: git@github.com:creasylai19/spring-cloud-config.git
 eureka:
   client:
     service-url:
